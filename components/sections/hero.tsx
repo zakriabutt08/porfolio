@@ -35,9 +35,11 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed"
         >
-          With 1 year of professional experience, I specialize in architecting 
-          **custom web applications** and robust **server-side logic**. 
-          I turn complex requirements into scalable, high-performance APIs and databases.
+         with 1+ year of experience in Laravel, specializing in building scalable RESTful APIs, database
+        design, and performance optimization. Skilled in debugging and writing clean, maintainable code with a strong
+        understanding of SDLC. Experienced in manual and automated API testing using Postman and Playwright to
+        ensure application reliability and quality. Passionate about backend development and eager to contribute to
+        dynamic teams.
         </motion.p>
 
         <motion.div
@@ -51,7 +53,7 @@ export function Hero() {
               Explore Projects <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
-          <Link href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`} target="_blank">
+          <Link href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "zaki-butt"}`} target="_blank">
             <Button variant="outline" size="lg" className="gap-2">
               <Github className="h-4 w-4" /> GitHub Profile
             </Button>

@@ -6,9 +6,17 @@ import { motion } from "framer-motion";
 
 const experience = [
   {
+    company: "Apex Web Designers",
+    role: "Backend Engineer",
+    period: "Apr 2026 - Present",
+    description:
+      "Developing backend systems using Laravel. Designing database schemas, constructing scalable RESTful APIs, and performing manual and automated testing to ensure system quality and stability.",
+    skills: ["Laravel", "PHP", "REST APIs", "Database Design", "Manual Testing", "Automation Testing"],
+  },
+  {
     company: "Wisdom IT Solutions",
     role: "Junior Backend Engineer",
-    period: "Feb 2024 - Present",
+    period: "Feb 2024 - Mar 2026",
     description: 
       "Promoted to Junior Backend Engineer following a successful internship. Architecting robust server-side logic using Laravel, managing complex database schemas, and implementing secure authentication systems with Laravel Sanctum and Spatie.",
     skills: ["Laravel", "PHP", "MySQL", "REST APIs", "Spatie", "Sanctum", "Cashier"],
