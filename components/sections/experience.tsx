@@ -1,5 +1,4 @@
 "use client";
-import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge"; // Ensure you have this shadcn component
 import { motion } from "framer-motion";

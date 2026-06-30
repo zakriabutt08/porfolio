@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react"; // 1. Added useState
 import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
@@ -14,14 +13,9 @@ const stats = [
   { label: "Core Stack", value: "PHP/JS", icon: Terminal },
 ];
 
+const heatmapLevels = ["bg-muted", "bg-emerald-900/30", "bg-emerald-700/50", "bg-emerald-500"];
+
 export function GitHubStats() {
-  // 2. Add a mounting state
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <Section id="github" className="bg-muted/10 rounded-3xl my-4">
       <div className="flex flex-col gap-8">
@@ -67,28 +61,19 @@ export function GitHubStats() {
                 </div>
                 
                 <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start">
-                    {/* 3. Use the mounted check here */}
-                    {mounted ? (
-                        Array.from({ length: 56 }).map((_, i) => {
-                            const levels = ["bg-muted", "bg-emerald-900/30", "bg-emerald-700/50", "bg-emerald-500"];
-                            const randomLevel = levels[Math.floor(Math.random() * levels.length)];
-                            return (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.01 }}
-                                    className={`h-3 w-3 rounded-[2px] ${randomLevel} hover:ring-2 hover:ring-primary transition-all`}
-                                />
-                            );
-                        })
-                    ) : (
-                        // Fallback: Gray squares while loading
-                        Array.from({ length: 56 }).map((_, i) => (
-                            <div key={i} className="h-3 w-3 rounded-[2px] bg-muted" />
-                        ))
-                    )}
+                    {Array.from({ length: 56 }).map((_, i) => {
+                        const heatmapLevel = heatmapLevels[(i * 7 + 3) % heatmapLevels.length];
+                        return (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.01 }}
+                                className={`h-3 w-3 rounded-[2px] ${heatmapLevel} hover:ring-2 hover:ring-primary transition-all`}
+                            />
+                        );
+                    })}
                 </div>
                 {/* ... rest of the footer ... */}
             </div>

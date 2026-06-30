@@ -9,29 +9,55 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, Layers, Loader2 } from "lucide-react";
 import Link from "next/link";
 
+type GitHubRepo = {
+  id: number;
+  name: string;
+  description: string | null;
+  fork: boolean;
+  html_url: string;
+  homepage: string | null;
+  language: string | null;
+  stargazers_count: number;
+  topics?: string[];
+};
+
 export function Projects() {
-  const [repos, setRepos] = useState<any[]>([]);
+  const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchRepos() {
       try {
         const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "zakriabutt08";
-        
-        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`);
-        const data = await response.json();
-        
+
+        const data: GitHubRepo[] = [];
+        let page = 1;
+        let hasMoreRepos = true;
+
+        while (hasMoreRepos) {
+          const response = await fetch(
+            `https://api.github.com/users/${username}/repos?sort=updated&per_page=100&page=${page}`
+          );
+
+          if (!response.ok) {
+            throw new Error(`GitHub API responded with ${response.status}`);
+          }
+
+          const reposPage: GitHubRepo[] = await response.json();
+          data.push(...reposPage);
+          hasMoreRepos = reposPage.length === 100;
+          page += 1;
+        }
+
         const processedData = data
-          .filter((repo: any) => !repo.fork) 
-          .sort((a: any, b: any) => {
+          .sort((a, b) => {
             const priority = ["rentify", "sanctum", "spatie"];
             const aMatch = priority.some(word => a.name.toLowerCase().includes(word));
             const bMatch = priority.some(word => b.name.toLowerCase().includes(word));
             if (aMatch && !bMatch) return -1;
             if (!aMatch && bMatch) return 1;
             return 0;
-          })
-          .slice(0, 6);
+          });
 
         setRepos(processedData);
       } catch (error) {
@@ -51,7 +77,7 @@ export function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-semibold tracking-tight mb-2">Featured Repositories</h2>
+          <h2 className="text-2xl font-semibold tracking-tight mb-2">GitHub Repositories</h2>
           <p className="text-muted-foreground">Live projects fetched from my GitHub.</p>
         </motion.div>
 
