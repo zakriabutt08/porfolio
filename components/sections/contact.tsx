@@ -13,6 +13,9 @@ export function Contact() {
           <p className="text-muted-foreground text-sm">
             Open to new opportunities and interesting projects.
           </p>
+          <Link href="/contact" className="text-sm text-primary hover:underline">
+            Visit contact page
+          </Link>
         </div>
         
         <div className="flex gap-4">

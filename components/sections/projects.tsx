@@ -5,8 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
+import { getProjectForRepoName } from "@/lib/projects";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Layers, Loader2 } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Layers, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 type GitHubRepo = {
@@ -76,9 +77,17 @@ export function Projects() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
         >
-          <h2 className="text-2xl font-semibold tracking-tight mb-2">GitHub Repositories</h2>
-          <p className="text-muted-foreground">Live projects fetched from my GitHub.</p>
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight mb-2">GitHub Repositories</h2>
+            <p className="text-muted-foreground">Live projects fetched from my GitHub.</p>
+          </div>
+          <Button variant="outline" size="sm" className="w-fit gap-2" asChild>
+            <Link href="/projects">
+              View case studies <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </Button>
         </motion.div>
 
         {loading ? (
@@ -90,6 +99,7 @@ export function Projects() {
             {repos.map((repo, index) => {
               // Bento Grid logic: Make index 0 and 3 wider (span 2) for a visual flow
               const isLarge = index === 0 || index === 3;
+              const projectDetails = getProjectForRepoName(repo.name);
               
               return (
                 <motion.div
@@ -138,14 +148,21 @@ export function Projects() {
                         </p>
                       </div>
 
-                      <div className="mt-auto flex gap-3 pt-2">
-                        <Button size="sm" variant="outline" className="w-full gap-2" asChild>
+                      <div className="mt-auto grid gap-3 pt-2 sm:grid-cols-2">
+                        {projectDetails && (
+                          <Button size="sm" className="gap-2" asChild>
+                            <Link href={`/projects/${projectDetails.slug}`}>
+                              Details <ArrowRight className="h-3.5 w-3.5" />
+                            </Link>
+                          </Button>
+                        )}
+                        <Button size="sm" variant="outline" className="gap-2" asChild>
                           <Link href={repo.html_url} target="_blank">
                             <Github className="h-3.5 w-3.5" /> Code
                           </Link>
                         </Button>
                         {repo.homepage && (
-                          <Button size="sm" className="w-full gap-2" asChild>
+                          <Button size="sm" variant={projectDetails ? "outline" : "primary"} className="gap-2" asChild>
                             <Link href={repo.homepage} target="_blank">
                               <ExternalLink className="h-3.5 w-3.5" /> Demo
                             </Link>
