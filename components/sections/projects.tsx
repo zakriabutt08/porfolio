@@ -16,8 +16,7 @@ export function Projects() {
   useEffect(() => {
     async function fetchRepos() {
       try {
-        // Tip: You can hardcode "zaki-butt" if you haven't set up the .env yet
-        const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "zaki-butt";
+        const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "zakriabutt08";
         
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`);
         const data = await response.json();

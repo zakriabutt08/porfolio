@@ -61,7 +61,7 @@ export function GitHubStats() {
             <div className="flex flex-col gap-6">
                 <div className="flex justify-between items-center">
                     <span className="text-sm font-semibold">Contribution Heatmap</span>
-                    <Link href="https://github.com/zaki-butt" className="text-xs text-primary hover:underline" target="_blank">
+                    <Link href="https://github.com/zakriabutt08" className="text-xs text-primary hover:underline" target="_blank">
                       View on GitHub →
                     </Link>
                 </div>

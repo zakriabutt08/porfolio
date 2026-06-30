@@ -53,7 +53,7 @@ export function Hero() {
               Explore Projects <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
-          <Link href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "zaki-butt"}`} target="_blank">
+          <Link href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "zakriabutt08"}`} target="_blank">
             <Button variant="outline" size="lg" className="gap-2">
               <Github className="h-4 w-4" /> GitHub Profile
             </Button>

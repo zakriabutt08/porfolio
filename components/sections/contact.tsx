@@ -17,7 +17,7 @@ export function Contact() {
         
         <div className="flex gap-4">
             <Button size="icon" variant="ghost" asChild>
-                <Link href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "zaki-butt"}`} target="_blank" aria-label="GitHub">
+                <Link href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "zakriabutt08"}`} target="_blank" aria-label="GitHub">
                     <Github className="h-5 w-5" />
                 </Link>
             </Button>
