@@ -35,7 +35,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed"
         >
-         with 1+ year of experience in Laravel, specializing in building scalable RESTful APIs, database
+         with 1.5 year of experience in Laravel, specializing in building scalable RESTful APIs, database
         design, and performance optimization. Skilled in debugging and writing clean, maintainable code with a strong
         understanding of SDLC. Experienced in manual and automated API testing using Postman and Playwright to
         ensure application reliability and quality. Passionate about backend development and eager to contribute to
